@@ -7,6 +7,9 @@ services:
     restart: on-failure
     ports: 
       - 5003:80
-    networks:
-      - germany-city-api_default
 
+
+networks:
+  default:
+    name: germany-city-api_default
+    external: true
