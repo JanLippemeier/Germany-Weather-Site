@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ApiModule } from './api/api.module';
-import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -30,7 +29,7 @@ import { NgChartsModule } from 'ng2-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ApiModule.forRoot({rootUrl:environment.api_url}),
+    ApiModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
