@@ -4,6 +4,30 @@
   </div>
 </nav>
 <div class="city-selection">
+  <mat-card class="city-info darkmode-card" *ngIf="city">
+    <div class="selected-tag">Ausgewählt</div>
+    <mat-card-title>{{city.name}}</mat-card-title>
+    <mat-card-subtitle class="darkmode">{{city.postal_code}} ({{city.state_name}})</mat-card-subtitle>
+    <mat-card-content>
+      <p>Größe: {{city.area}} km²</p>
+      <p>Koordinaten: {{city.latitude.toFixed(4)}}°N, {{city.longitude.toFixed(4)}}°E</p>
+      <p>Einwohner: {{city.population}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="addCity()"  class="add-button" mat-button>Hinzufügen<mat-icon>add</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="saved-cities darkmode-card">
+    <mat-card-title>Gespeicherte Städte</mat-card-title>
+    <ul>
+      <li class="saved-city" *ngFor="let savedCity of savedCities" (click)="city=savedCity">
+        {{savedCity.name}}, {{savedCity.postal_code}}
+        <button mat-button (click)="removeCity(savedCity.postal_code)" class="remove-city">
+          <mat-icon>delete</mat-icon>
+        </button>    
+      </li>
+    </ul>
+  </mat-card>
   <mat-card class="search-card darkmode-card">
     <mat-card-title>Standort wählen</mat-card-title>
     <div class="search-input">
@@ -45,30 +69,7 @@
       Keine Stadt gefunden
     </div>
   </mat-card>
-  <mat-card class="city-info darkmode-card" *ngIf="city">
-    <div class="selected-tag">Ausgewählt</div>
-    <mat-card-title>{{city.name}}</mat-card-title>
-    <mat-card-subtitle class="darkmode">{{city.postal_code}} ({{city.state_name}})</mat-card-subtitle>
-    <mat-card-content>
-      <p>Größe: {{city.area}} km²</p>
-      <p>Koordinaten: {{city.latitude.toFixed(4)}}°N, {{city.longitude.toFixed(4)}}°E</p>
-      <p>Einwohner: {{city.population}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button (click)="addCity()"  class="add-button" mat-button>Hinzufügen<mat-icon>add</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="saved-cities darkmode-card">
-    <mat-card-title>Gespeicherte Städte</mat-card-title>
-    <ul>
-      <li class="saved-city" *ngFor="let savedCity of savedCities" (click)="city=savedCity">
-        {{savedCity.name}}, {{savedCity.postal_code}}
-        <button mat-button (click)="removeCity(savedCity.postal_code)" class="remove-city">
-          <mat-icon>delete</mat-icon>
-        </button>    
-      </li>
-    </ul>
-  </mat-card>
+  
 </div>
 <app-weather-display *ngIf="city" [city]="city"></app-weather-display>
 <router-outlet></router-outlet>

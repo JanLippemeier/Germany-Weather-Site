@@ -21,6 +21,8 @@ h1{
 .darkmode-card{
     color: rgba($white, 0.9);
     background-color: $black-light;
+    max-width: 100%;
+    overflow: auto;
 }
 
 .darkmode{

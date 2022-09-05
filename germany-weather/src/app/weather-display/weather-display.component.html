@@ -1,16 +1,18 @@
-<div class="weather-cards">
-    <mat-card  *ngFor="let weatherDay of weatherWeek" class="weather-card darkmode-card" (click)="selectedDay=weatherDay;drawGraph()">
-        <mat-card-title-group>
-            <mat-card-title>{{weatherDay.date}}</mat-card-title>
-            <mat-card-subtitle class="darkmode">{{weatherDay.day}}</mat-card-subtitle>
-        </mat-card-title-group>
-        <mat-card-content>
-            <div class="temperature"><span class="temp-high">{{weatherDay.maxTemp}}°C</span><span class="temp-low">{{weatherDay.minTemp}}°C</span></div>
-            <p>Regenmenge: {{weatherDay.precipitation.toFixed(2)}} ml</p>
-            <p>Regenstunden: {{weatherDay.precipitationHours}}</p>
-        </mat-card-content>
-        <img [src]="'../../assets/'+weatherDay.icon+'.png'" class="weather-icon">
-    </mat-card>
+<div class="weather">
+    <div class="weather-cards">
+        <mat-card  *ngFor="let weatherDay of weatherWeek" class="weather-card darkmode-card" (click)="selectedDay=weatherDay;drawGraph()">
+            <mat-card-title-group>
+                <mat-card-title>{{weatherDay.date}}</mat-card-title>
+                <mat-card-subtitle class="darkmode">{{weatherDay.day}}</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content>
+                <div class="temperature"><span class="temp-high">{{weatherDay.maxTemp}}°C</span><span class="temp-low">{{weatherDay.minTemp}}°C</span></div>
+                <p>Regenmenge: {{weatherDay.precipitation.toFixed(2)}} ml</p>
+                <p>Regenstunden: {{weatherDay.precipitationHours}}</p>
+            </mat-card-content>
+            <img [src]="'../../assets/'+weatherDay.icon+'.png'" class="weather-icon">
+        </mat-card>
+    </div>
+    
+    <canvas class="weather-chart" id="weather-forecast"></canvas>
 </div>
-
-<canvas class="weather-chart" id="weather-forecast"></canvas>
