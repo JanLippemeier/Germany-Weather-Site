@@ -1,0 +1,28 @@
+@import "./variables";
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: $black;
+}
+
+nav{
+    background-color: $blue;
+    padding: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+h1{
+    color: $white;
+    text-align: center;
+}
+
+.darkmode-card{
+    color: rgba($white, 0.9);
+    background-color: $black-light;
+}
+
+.darkmode{
+    color: rgba($white, 0.9);
+}

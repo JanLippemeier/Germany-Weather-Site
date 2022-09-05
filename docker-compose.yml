@@ -1,0 +1,8 @@
+version: "3.0"
+
+services:
+  web:
+    build: .
+    restart: on-failure
+    ports: 
+      - 5003:80

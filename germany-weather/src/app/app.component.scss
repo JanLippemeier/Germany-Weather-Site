@@ -1,0 +1,67 @@
+@import "../variables";
+
+.city-selection{
+    margin: 40px 2.5%;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 50px;
+}
+
+.search-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.search-input{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-button{
+    background-color: $blue;
+    color: $white;
+}
+
+.location-button{
+    background-color: $blue;
+    color: $white;
+}
+
+.available-cities{
+    margin-top: 40px;
+    max-height: 300px;
+    overflow: auto;
+    min-width: 600px;
+}
+.city-cell{
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.city-info{
+    position: relative;
+    padding-top: 50px;
+    padding-right: 80px;
+}
+
+.selected-tag{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $blue;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 5px;
+}
+
+.add-button{
+    background-color: $blue;
+}
+
+.saved-city{
+    cursor: pointer;
+}

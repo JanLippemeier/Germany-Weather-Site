@@ -1,0 +1,44 @@
+@import "../../variables";
+
+
+
+.weather-cards{
+    display: flex;
+    width: 95%;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 25px 2.5%;
+}
+.weather-card{
+    width: 175px;
+    position: relative;
+    padding-right: 50px;
+}
+.weather-icon{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+}
+.temperature{
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.temperature .temp-high{
+    font-weight: bold;
+    color: $white;
+}
+
+.temperature .temp-low{
+    font-weight: 500;
+    color: rgba($white, 0.7);
+}
+
+.weather-chart{
+    max-height: 40vh;
+    width: 90%;
+    margin: 50px auto;
+}

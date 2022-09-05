@@ -1,0 +1,74 @@
+<nav>
+  <div>
+    <h1>Wetter in Deutschland</h1>
+  </div>
+</nav>
+<div class="city-selection">
+  <mat-card class="search-card darkmode-card">
+    <mat-card-title>Standort wählen</mat-card-title>
+    <div class="search-input">
+      <mat-form-field>
+        <input class="darkmode" type="text" matInput placeholder="" #searchInput>
+        <mat-placeholder class="placeholde darkmode">Plz oder Name der Stadt</mat-placeholder>
+      </mat-form-field>
+      <button mat-mini-fab class="search-button" (click)="searchCity(searchInput.value)"><mat-icon>search</mat-icon></button>
+    </div>
+    <mat-card-subtitle class="darkmode">oder</mat-card-subtitle>
+    <button mat-button class="location-button" (click)="useCurrentLocation()">Akutellen Standort verwenden <mat-icon>location_on</mat-icon></button>
+  </mat-card>
+  <mat-card class="darkmode-card">
+    <div *ngIf="foundCities.length" class="available-cities">
+      <mat-table [dataSource]="foundCities" class="darkmode-card">
+
+        <ng-container matColumnDef="name">
+          <th class="city-cell darkmode" mat-header-cell *matHeaderCellDef> Name </th>
+          <td class="city-cell darkmode" mat-cell *matCellDef="let cityRow" (click)="city=cityRow"> {{cityRow.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="postal_code">
+          <th class="city-cell darkmode" mat-header-cell *matHeaderCellDef> Plz </th>
+          <td class="city-cell darkmode" mat-cell *matCellDef="let cityRow" (click)="city=cityRow"> {{cityRow.postal_code}} </td>
+        </ng-container>
+        <ng-container matColumnDef="population">
+          <th class="city-cell darkmode" mat-header-cell *matHeaderCellDef> Einwohner </th>
+          <td class="city-cell darkmode" mat-cell *matCellDef="let cityRow" (click)="city=cityRow"> {{cityRow.population}} </td>
+        </ng-container>
+        <ng-container matColumnDef="state_name">
+          <th class="city-cell darkmode" mat-header-cell *matHeaderCellDef> Bundesland </th>
+          <td class="city-cell darkmode" mat-cell *matCellDef="let cityRow" (click)="city=cityRow"> {{cityRow.state_name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="cityColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: cityColumns;"></tr>
+      </mat-table>
+    </div>
+    <div *ngIf="!foundCities.length" class="available-cities">
+      Keine Stadt gefunden
+    </div>
+  </mat-card>
+  <mat-card class="city-info darkmode-card" *ngIf="city">
+    <div class="selected-tag">Ausgewählt</div>
+    <mat-card-title>{{city.name}}</mat-card-title>
+    <mat-card-subtitle class="darkmode">{{city.postal_code}} ({{city.state_name}})</mat-card-subtitle>
+    <mat-card-content>
+      <p>Größe: {{city.area}} km²</p>
+      <p>Koordinaten: {{city.latitude.toFixed(4)}}°N, {{city.longitude.toFixed(4)}}°E</p>
+      <p>Einwohner: {{city.population}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="addCity()"  class="add-button" mat-button>Hinzufügen<mat-icon>add</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="saved-cities darkmode-card">
+    <mat-card-title>Gespeicherte Städte</mat-card-title>
+    <ul>
+      <li class="saved-city" *ngFor="let savedCity of savedCities" (click)="city=savedCity">
+        {{savedCity.name}}, {{savedCity.postal_code}}
+        <button mat-button (click)="removeCity(savedCity.postal_code)" class="remove-city">
+          <mat-icon>delete</mat-icon>
+        </button>    
+      </li>
+    </ul>
+  </mat-card>
+</div>
+<app-weather-display *ngIf="city" [city]="city"></app-weather-display>
+<router-outlet></router-outlet>
